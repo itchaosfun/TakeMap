@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TakeMap" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:windowTranslucentStatus">false</item><!--可以页面拉伸到状态栏顶部-->
+        <item name="android:windowTranslucentNavigation">true</item><!--可以页面拉伸到虚拟按键底部-->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">#00FFFFFF</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

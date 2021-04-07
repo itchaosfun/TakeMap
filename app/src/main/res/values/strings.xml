@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TakeMap</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoieW91Y2hhbyIsImEiOiJja2p2M3d2ODAwNTd5Mm9vYWtvcm5uZXBkIn0.y9seJb82AJYWudMtUsu3SA</string>
+</resources>
