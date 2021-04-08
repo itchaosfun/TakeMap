@@ -1,4 +1,4 @@
-package com.chaos.takemap
+package com.chaos.takemap.util
 
 import android.app.Activity
 import android.content.Context

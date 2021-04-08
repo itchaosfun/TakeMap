@@ -1,10 +1,11 @@
-package com.chaos.takemap
+package com.chaos.takemap.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.chaos.takemap.R
 
 class ElementAdapter: RecyclerView.Adapter<ElementAdapter.ViewHolder> {
 
@@ -14,13 +15,13 @@ class ElementAdapter: RecyclerView.Adapter<ElementAdapter.ViewHolder> {
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElementAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_item_element, parent, false)
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ElementAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     }
 
     override fun getItemCount(): Int {
