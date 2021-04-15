@@ -11,5 +11,6 @@ data class SettingDataItem(
 data class Content(
     val asset: String,
     val desc: String,
+    var select:Int=0,
     val id: Int
 )

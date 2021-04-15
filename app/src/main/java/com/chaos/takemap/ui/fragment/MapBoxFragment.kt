@@ -77,6 +77,7 @@ class MapBoxFragment : BaseFragment() {
                 MapStyleEnum.valueOfByType<String>(mapStyle) ?: Style.LIGHT
             ) {
                 this.style = it
+                mapBoxHelper?.setStyle(it)
             }
         }
     }

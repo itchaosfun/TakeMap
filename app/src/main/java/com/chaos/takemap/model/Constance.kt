@@ -1,5 +1,9 @@
 package com.chaos.takemap.model
 
+val GEOJSON = "geojson"
+val GEOJSON_YOUDU = "geojson_youdu"
+val GEOJSON_LISHUI = "geojson_lishui"
+
 val ICON_TYPE_HEADER = 100
 val ICON_TYPE_LAYER = 101
 

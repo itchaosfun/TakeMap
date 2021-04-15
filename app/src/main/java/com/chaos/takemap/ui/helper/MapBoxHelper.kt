@@ -5,6 +5,7 @@ import android.graphics.Color
 import com.chaos.takemap.model.*
 import com.chaos.takemap.model.enummodel.DefaultLocationEnum
 import com.chaos.takemap.util.FileUtils
+import com.chaos.takemap.util.LogUtil
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.geojson.LineString
@@ -26,6 +27,8 @@ class MapBoxHelper(
     private var mapboxMap: MapboxMap,
     private var style: Style
 ) {
+
+    private val TAG = "MapBoxHelper"
     /**
      * 相机视角位置
      */
@@ -55,6 +58,10 @@ class MapBoxHelper(
         val uiSettings = mapboxMap.uiSettings
         uiSettings.isLogoEnabled = false
         uiSettings.isAttributionEnabled = false
+    }
+
+    fun setStyle(style: Style){
+        this.style = style
     }
 
     /**
@@ -109,6 +116,11 @@ class MapBoxHelper(
      * 由度空间的geojson
      */
     private fun setUpYouduGeoLayer(youduGeoJson: YouduGeoJson) {
+        val source = style.getSource(GEOJSON_YOUDU)
+        if (source != null){
+            LogUtil.d(TAG,"source $GEOJSON_YOUDU has already exist")
+            return
+        }
         val features = mutableListOf<Feature>()
         youduGeoJson.features.forEach { feature ->
             val coordinates = feature.geometry.coordinates
@@ -126,11 +138,11 @@ class MapBoxHelper(
         val featureCollection =
             FeatureCollection.fromFeatures(features)
 
-        val geoJsonSource = GeoJsonSource("youdu-geojson", featureCollection)
+        val geoJsonSource = GeoJsonSource(GEOJSON_YOUDU, featureCollection)
         style.addSource(geoJsonSource)
 
         style.addLayer(
-            LineLayer("youdu-geojson", "youdu-geojson").withProperties(
+            LineLayer(GEOJSON_YOUDU, GEOJSON_YOUDU).withProperties(
                 PropertyFactory.lineDasharray(arrayOf<Float>(0.01f, 0.01f)),
                 PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
                 PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
@@ -144,6 +156,12 @@ class MapBoxHelper(
      * 溧水的geojson
      */
     private fun setUpLishuiGeoLayer(lishuiGeoJson: LishuiGeoJson) {
+
+        val source = style.getSource(GEOJSON_LISHUI)
+        if (source != null){
+            LogUtil.d(TAG,"source $GEOJSON_LISHUI has already exist")
+            return
+        }
 
         val features = mutableListOf<com.mapbox.geojson.Feature>()
 
@@ -182,11 +200,11 @@ class MapBoxHelper(
         }
         val featureCollection =
             FeatureCollection.fromFeatures(features)
-        val geoJsonSource = GeoJsonSource("lishui-geojson", featureCollection)
+        val geoJsonSource = GeoJsonSource(GEOJSON_LISHUI, featureCollection)
         style.addSource(geoJsonSource)
 
         style.addLayer(
-            LineLayer("lishui-geojson", "lishui-geojson").withProperties(
+            LineLayer(GEOJSON_LISHUI, GEOJSON_LISHUI).withProperties(
                 PropertyFactory.lineDasharray(arrayOf<Float>(0.01f, 0.01f)),
                 PropertyFactory.lineCap(Property.LINE_CAP_ROUND),
                 PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND),
