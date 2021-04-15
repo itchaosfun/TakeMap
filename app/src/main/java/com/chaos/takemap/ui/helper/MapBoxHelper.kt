@@ -29,7 +29,12 @@ class MapBoxHelper(
     /**
      * 相机视角位置
      */
-    fun updateCameraPosition(latLng: LatLng, zoom: Double = 18.0, tilt: Double = 0.0, bearing: Double = 0.0) {
+    fun updateCameraPosition(
+        latLng: LatLng,
+        zoom: Double = 18.0,
+        tilt: Double = 0.0,
+        bearing: Double = 0.0
+    ) {
         try {
             val position = CameraPosition.Builder()
                 .target(latLng)
@@ -65,7 +70,7 @@ class MapBoxHelper(
             }
         }
         val defaultLocation = DefaultLocationEnum.valueOfLocationByType(content.desc)
-        updateCameraPosition(LatLng(defaultLocation.defaultLat,defaultLocation.defaultLon))
+        updateCameraPosition(LatLng(defaultLocation.defaultLat, defaultLocation.defaultLon))
     }
 
     /**
@@ -79,9 +84,14 @@ class MapBoxHelper(
      * 加载geojson地图
      */
     private fun loadGeoMap(content: Content) {
-        val geoJson =
-            FileUtils.getAssertAsData<YouduGeoJson>(context, content.asset)
-        setUpGeoJsonLayer(geoJson)
+        when (content.id) {
+            MAP_GEO_YOUDU -> {
+                setUpGeoJsonLayer(FileUtils.getAssertAsData<YouduGeoJson>(context, content.asset))
+            }
+            MAP_GEO_LISHUI -> {
+                setUpGeoJsonLayer(FileUtils.getAssertAsData<LishuiGeoJson>(context, content.asset))
+            }
+        }
     }
 
     /**
