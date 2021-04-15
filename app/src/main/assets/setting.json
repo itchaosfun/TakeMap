@@ -1,0 +1,34 @@
+[
+  {
+    "type": 1000,
+    "name": "GEO地图",
+    "content": [
+      {
+        "id": 1001,
+        "desc": "由度",
+        "asset": "youdu.json"
+      },
+      {
+        "id": 1002,
+        "desc": "溧水",
+        "asset": "lishui.json"
+      }
+    ]
+  },
+  {
+    "type": 1010,
+    "name": "MAP地图",
+    "content": [
+      {
+        "id": 1011,
+        "desc": "由度",
+        "asset": "youdumap.json"
+      },
+      {
+        "id": 1012,
+        "desc": "溧水",
+        "asset": "lishuimap.json"
+      }
+    ]
+  }
+]

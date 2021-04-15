@@ -1,6 +1,9 @@
 package com.chaos.takemap.util
 
 import android.content.Context
+import com.chaos.takemap.R
+import com.chaos.takemap.model.ElementData
+import com.google.gson.Gson
 import java.io.*
 import java.util.*
 
@@ -36,42 +39,25 @@ object FileUtils {
         }
     }
 
-//    fun getGeoJson(context: Context): GeoJson {
-//        //读取asset中的geojson文件成一个jsonString
-//        val stringBuilder = StringBuilder();
-//        try {
-//            val inputStreamReader = context.assets.open(context.getString(R.string.hd_map_geojson));
-//            val bufferedReader = BufferedReader(InputStreamReader(inputStreamReader))
-//            var line: String? = null
-//            while (({ line = bufferedReader.readLine();line }()) != null) {
-//                stringBuilder.append(line);
-//            }
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//
-//        return Gson().fromJson(stringBuilder.toString(), GeoJson::class.java)
-//    }
+    inline fun<reified T> getAssertAsData(context: Context, fileName: String): T {
+        //读取asset中的文件成一个data bean
+        val stringBuilder = StringBuilder();
+        try {
+            val inputStreamReader = context.assets.open(fileName);
+            val bufferedReader = BufferedReader(InputStreamReader(inputStreamReader))
+            var line: String? = null
+            while (({ line = bufferedReader.readLine();line }()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return Gson().fromJson(stringBuilder.toString(), T::class.java)
+    }
 
 
-//    fun getMapJson(context: Context): XiaochenMapData {
-//        //读取asset中的geojson文件成一个jsonString
-//        val stringBuilder = StringBuilder();
-//        try {
-//            val inputStreamReader =
-//                context.assets.open(context.getString(R.string.xiaochen_map_json));
-//            val bufferedReader = BufferedReader(InputStreamReader(inputStreamReader))
-//            var line: String? = null
-//            var i = 0;
-//            while (({ line = bufferedReader.readLine();line }()) != null) {
-//                stringBuilder.append(line);
-//            }
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//        LogUtil.d(TAG, "MAPData = ${stringBuilder.toString()}")
-//        return Gson().fromJson(stringBuilder.toString(), XiaochenMapData::class.java)
-//    }
+
 
 
     fun writeMapData(context: Context, data: String, fileName: String = "mapdata.json") {
@@ -104,7 +90,6 @@ object FileUtils {
                 return ""
             }
         }
-
         try {
             val inputStream = FileInputStream(file)
             val string = String(inputStream.readBytes())

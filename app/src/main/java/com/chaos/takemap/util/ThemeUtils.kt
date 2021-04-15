@@ -4,8 +4,7 @@ import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import com.chaos.takemap.config.ThemeConfig
-import com.chaos.takemap.data.THEME_DARK
-import com.chaos.takemap.data.THEME_STREET
+import com.chaos.takemap.model.THEME_DARK
 
 object ThemeUtils {
 
